@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reach Me</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="shortcut icon" type=".icon" href="img/farvicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap"rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"/>
+      
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+  </head>
+  <body>
+    </head>
+    <body>
+
+        <!-- Nav-bar items -->
+       <header>
+        <a href="/index.html" class="logo">Ladwong's Portfolio</a>
+        <div class="menuToggle"></div>
+        <ul class="nav">
+            <li class="active"><a href="/index.html">Home</a></li>
+            <li><a href="/index.html">Services</a></li>
+            <li><a href="/index.html">Porfolio</a></li>
+            <li><a href="#contact">Contacts</a></li>
+        </ul>
+       </header>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600&family=Oxygen:wght@300&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Signika+Negative:wght@300&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'Poppins', sans-serif;
+}
+.containers{
+    width: 100%;
+    min-height: 100vh;
+    background: #111113;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.forms{
+    background: #1d1e1d;
+    display: flex;
+    flex-direction: column;
+    padding: 3vw 3vw;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 1em;
+}
+.forms h3{
+    color: rgb(0, 255, 89);
+    font-weight: 500;
+    font-size: 1.7em;
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: 'Poppins', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.forms input, .forms textarea{
+    border: 0;
+    margin: 0.8em 0;
+    padding: 20px;
+    outline: none;
+    background: #fff;
+    font-size: 16px;
+    border-radius: 1em;
+    transition: all 0.5s;
+}
+.forms input:focus, textarea:focus{
+    background: #f7f7f7;
+}
+.forms textarea{
+    resize: none;
+}
+.forms button{
+    padding: 0.5em;
+    background-color: rgb(0, 255, 89);
+    color: #222;
+    font-size: 1.2em;
+    outline: none;
+    cursor: pointer;
+    width: 10em;
+    margin: 2em auto 0;
+    border-radius: 3px;
+}
+.forms button:hover{
+    font-weight: 500;
+    background: rgba(95, 247, 95, 0.975);
+    border-radius: 8px;
+    color: #fff;
+}
+span{
+    color: rgb(95, 247, 95);
+    align-items: center;
+    text-align: center;
+    margin-top: 1.3em;
+}
+    </style>
+
+
+
+
+    <div class="containers">
+    <form class="forms" action="https://formspree.io/f/mknapdez"
+    method="POST" name="submit-to-google-sheet">
+        <h3>Reach Me</h3>
+        <input name="name" type="text" autocomplete="off" placeholder="Full Name" required oninvalid="this.setCustomValidity('Please Enter your Name')" oninput="this.setCustomValidity('')">
+        <input name="email" type="email" autocomplete="off" placeholder="Email ID" required oninvalid="this.setCustomValidity('Please Enter valid email address')" oninput="this.setCustomValidity('')">
+        <input id="phone" type="tel" name="phone" required oninvalid="this.setCustomValidity('Please Enter valid phone number')" oninput="this.setCustomValidity('')"/>
+        <textarea name="message" id="message" placeholder="Your Message" rows="4" required oninvalid="this.setCustomValidity('Please Enter valid Messages')" oninput="this.setCustomValidity('')"></textarea>
+        <button type="submit" name="myButton"  >Send</button>
+        <span id="msg"></span>
+    </form>
+   </div>
+
+ 
+
+
+   <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbx3jvajLKBwpfiE6HtdImr6_1rrAQhivMiAh8bAyoj5mNg-KFd04uauaX2B-3nydkMY/exec'
+    const form = document.forms['submit-to-google-sheet']
+    const msg = document.getElementById('msg')
+
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    alert("Your Messages has been sent succesfully!"); 
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => {
+        msg.innerHTML = "Thank you for your reaching me!"
+        setTimeout(function(){
+            msg.innerHTML = ""
+        }, 50000)
+        form.reset 
+
+      })
+
+      .catch(error => console.error('Error!', error.message))
+  })
+</script>
+
+  </body>
+
+
+   <script>
+    const phoneInputField = document.querySelector("#phone");
+    const phoneInput = window.intlTelInput(phoneInputField, {
+      utilsScript:
+        "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+    });
+  </script>
+
+<script src="script.js" async defer></script>
+ </html>
